@@ -4,9 +4,9 @@ const app = express()
 
 app.use(express.json())
 
-
+app.use('/', express.static(__dirname + '/../client/dist'))
 
 const PORT = 3000
-app.listen((err) => {
+app.listen(PORT, (err) => {
   err ? console.log(err) : console.log(`Listening on ${PORT}`)
 })

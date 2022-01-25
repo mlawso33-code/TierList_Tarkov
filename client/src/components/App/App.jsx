@@ -4,6 +4,8 @@ const App = () => {
   return(
     <div>
       <h1>Tarkov Weapon List</h1>
+      <TierList />
+      <Forum />
     </div>
   )
 }
