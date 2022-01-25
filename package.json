@@ -1,0 +1,31 @@
+{
+  "name": "hr-den16-mvp",
+  "version": "1.0.0",
+  "description": "Minimum Viable Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack --config ./webpack.config.js --mode development -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlawso33-code/hr-den16-mvp.git"
+  },
+  "author": "Marc Lawson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlawso33-code/hr-den16-mvp/issues"
+  },
+  "homepage": "https://github.com/mlawso33-code/hr-den16-mvp#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.67.0"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "react": "^17.0.2"
+  }
+}
