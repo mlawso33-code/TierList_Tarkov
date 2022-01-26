@@ -1,5 +1,9 @@
 import React from 'react'
 
+
+import TierList from '../TierList/TierList.jsx'
+import Forum from '../Forum/Forum.jsx'
+
 const App = () => {
   return(
     <div>

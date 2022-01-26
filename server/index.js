@@ -1,5 +1,6 @@
 const express = require('express')
 const axios = require('axios')
+const {db} = require('../db/index.js')
 const app = express()
 
 app.use(express.json())
