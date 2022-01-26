@@ -7,8 +7,9 @@ app.use(express.json())
 
 app.use('/', express.static(__dirname + '/../client/dist'))
 
-app.get('/tierlist/assault_rifles', (req, res) => {
-  db.query('SELECT * FROM assault_rifles', (err, result) => {
+app.get('/tierlist/assault_rifles/:id', (req, res) => {
+  const {id} = req.params
+  db.query(`SELECT * FROM assault_rifles WHERE id=${id}`, (err, result) => {
     err ? console.log(err) : res.send(result)
   })
 })

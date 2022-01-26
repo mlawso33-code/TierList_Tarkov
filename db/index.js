@@ -8,7 +8,6 @@ const db = mysql.createConnection({
   password: 'password',
   database: 'tierList',
   port: 3306,
-  //socketPath: '/var/run/mysqld/mysqld.sock'
 });
 
 db.connect((err, result) => {
