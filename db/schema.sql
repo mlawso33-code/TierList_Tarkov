@@ -16,3 +16,5 @@ CREATE TABLE `ballistics` (
   PRIMARY KEY (`id`)
 );
 
+--ALTER TABLE assault_rifles ADD votes BIGINT NOT NULL;
+
