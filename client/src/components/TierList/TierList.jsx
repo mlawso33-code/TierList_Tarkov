@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 
 import AppContext from '../App/AppContext.jsx'
+import VoteModal from './VoteModal.jsx'
 
 const TierList = () => {
   const { assaultRifles } = useContext(AppContext)
@@ -13,13 +14,19 @@ const TierList = () => {
   const [dTier, setD] = useState([])
   const [fTier, setF] = useState([])
   const [vote, setVote] = useState(assaultRifles[0].votes)
+  const [disable, setDisabled] = useState(false)
+  const [displayModal, setDisplayModal] = useState(false);
 
   const [image, setImage] = useState('')
-  console.log('image:::', image)
+
+  function changeDisplayModal() {
+    setDisplayModal(!displayModal)
+  }
+
   function voteRange(wepVote) {
-    if (wepVote >= 0 && wepVote <= 2) {
+    if (wepVote >= 1 && wepVote <= 2) {
       setF(assaultRifles)
-    } if (wepVote >= 3 && wepVote <= 5) {
+    } else if (wepVote >= 3 && wepVote <= 5) {
       setF([])
       setD(assaultRifles)
     } else if (wepVote >= 6 && wepVote <= 8) {
@@ -38,47 +45,87 @@ const TierList = () => {
       null
     }
   }
+
+  function updateVote(weaponId) {
+    var voteObj = {
+      vote: vote
+    }
+    axios
+      .put(`/tierlist/assault_rifles/${weaponId}`, voteObj)
+  }
   function increaseVote(num) {
     setVote(vote + 1)
   }
   function decreaseVote(num) {
     setVote(vote - 1)
+    if (sTier[0] && vote < 17) {
+      setS([])
+    }
+    if (aTier[0] && vote < 14) {
+      setA([])
+    }
+    if (bTier[0] && vote < 11) {
+      setB([])
+    }
+    if (cTier[0] && vote < 8) {
+      setC([])
+    }
+    if (dTier[0] && vote < 5) {
+      setD([])
+    }
+    if (fTier[0] && vote < 2) {
+      setF([])
+    }
+  }
+
+  function handleDisable() {
+    if (vote <= 0) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
   }
 
   useEffect(() => {
     voteRange(vote)
+    updateVote(assaultRifles[0].id)
     setImage(assaultRifles[0].url)
+    handleDisable()
   }, [vote])
-
 
   return (
     <div>
       <h2>Tier List</h2>
       <div className="tierList">
         <div id="eachTier">
-          S <span id="tierWeapons">{sTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          S <span id="tierWeapons">{sTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          A <span id="tierWeapons">{aTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          A <span id="tierWeapons">{aTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          B <span id="tierWeapons">{bTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          B <span id="tierWeapons">{bTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          C <span id="tierWeapons">{cTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          C <span id="tierWeapons">{cTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          D <span id="tierWeapons">{dTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          D <span id="tierWeapons">{dTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          F  <span id="tierWeapons">{fTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
+          F  <span id="tierWeapons">{fTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
         </div>
-        <div className="ak103">
-          <span><img src={image} alt="Rifle" width="250" height="100" /> ({vote}) </span>
-          <i class="fas fa-caret-square-up" onClick={increaseVote}></i>
-
-          <i class="fas fa-caret-square-down" onClick={decreaseVote}></i>
+        <div className="weaponList">
+          <div id="eachWeapon">
+            <img src={image} alt="Rifle" width="250" height="100" />
+            <button onClick={changeDisplayModal}>Show Details</button>
+          </div>
         </div>
+        <div className={`Modal ${displayModal ? 'Show' : ''}`}>
+          <VoteModal modal={changeDisplayModal} vote={vote}
+            increase={increaseVote} decrease={decreaseVote} rifle={assaultRifles[0]} disable={disable} />
+        </div>
+        <div className={`Overlay ${displayModal ? 'Show' : ''}`} />
       </div>
     </div>
   )
