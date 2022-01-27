@@ -11,7 +11,7 @@ const Posts = ({ post }) => {
       <div>
         <strong>Post: </strong> {post.forum_body}
       </div>
-      <span id="postDetails">by <i>{post.user}</i> on <small>{moment(post.date).format('LL')}</small></span>
+      <span id="postDetails">by <em>{post.user}</em> on <small>{moment(post.date).format('LL')}</small></span>
       <div>
         <Replies key={post.id} postId={post.id}/>
       </div>

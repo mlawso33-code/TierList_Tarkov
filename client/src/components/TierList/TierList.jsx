@@ -14,6 +14,8 @@ const TierList = () => {
   const [fTier, setF] = useState([])
   const [vote, setVote] = useState(assaultRifles[0].votes)
 
+  const [image, setImage] = useState('')
+  console.log('image:::', image)
   function voteRange(wepVote) {
     if (wepVote >= 0 && wepVote <= 2) {
       setF(assaultRifles)
@@ -45,6 +47,7 @@ const TierList = () => {
 
   useEffect(() => {
     voteRange(vote)
+    setImage(assaultRifles[0].url)
   }, [vote])
 
 
@@ -53,28 +56,28 @@ const TierList = () => {
       <h2>Tier List</h2>
       <div className="tierList">
         <div id="eachTier">
-          S <span id="tierWeapons">{sTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          S <span id="tierWeapons">{sTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div id="eachTier">
-          A <span id="tierWeapons">{aTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          A <span id="tierWeapons">{aTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div id="eachTier">
-          B <span id="tierWeapons">{bTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          B <span id="tierWeapons">{bTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div id="eachTier">
-          C <span id="tierWeapons">{cTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          C <span id="tierWeapons">{cTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div id="eachTier">
-          D <span id="tierWeapons">{dTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          D <span id="tierWeapons">{dTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div id="eachTier">
-          F  <span id="tierWeapons">{fTier.map((weapon) => (<span>{weapon.name}</span>))}</span>
+          F  <span id="tierWeapons">{fTier.map((weapon) => (<img src={weapon.url} width="150" height="50"/>))}</span>
         </div>
         <div className="ak103">
-          {/* <img src="./TierList/AK-103_7.62x39.jpg" alt="Rifle" width="250" height="100"/> */}
-          <span>AK-103 7.62x39 ({vote})</span>
-          <button onClick={increaseVote}>Vote up</button>
-          <button onClick={decreaseVote}>Vote down</button>
+          <span><img src={image} alt="Rifle" width="250" height="100" /> ({vote}) </span>
+          <i class="fas fa-caret-square-up" onClick={increaseVote}></i>
+
+          <i class="fas fa-caret-square-down" onClick={decreaseVote}></i>
         </div>
       </div>
     </div>
