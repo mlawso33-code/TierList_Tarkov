@@ -98,22 +98,22 @@ const TierList = () => {
       <h2>Tier List</h2>
       <div className="tierList">
         <div id="eachTier">
-          S <span id="tierWeapons">{sTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          S <span id="tierWeapons">{sTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          A <span id="tierWeapons">{aTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          A <span id="tierWeapons">{aTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          B <span id="tierWeapons">{bTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          B <span id="tierWeapons">{bTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          C <span id="tierWeapons">{cTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          C <span id="tierWeapons">{cTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          D <span id="tierWeapons">{dTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          D <span id="tierWeapons">{dTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div id="eachTier">
-          F  <span id="tierWeapons">{fTier.map((weapon) => (<img src={weapon.url} width="150" height="50" />))}</span>
+          F  <span id="tierWeapons">{fTier.map((weapon) => (<img src={weapon.url} alt="Rifle" width="150" height="50" />))}</span>
         </div>
         <div className="weaponList">
           <div id="eachWeapon">

@@ -1,11 +1,13 @@
 const express = require('express')
 const axios = require('axios')
 const db = require('../db/index.js')
+const shrinkRay = require('shrink-ray-current');
 const app = express()
 
 app.use(express.json())
 
 app.use('/', express.static(__dirname + '/../client/dist'))
+app.use(shrinkRay())
 
 //retrieve weapons
 app.get('/tierlist/assault_rifles/:id', (req, res) => {

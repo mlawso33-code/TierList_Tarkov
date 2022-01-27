@@ -15,30 +15,31 @@ const App = () => {
     setTimeout(() => setLoading(false), 2000)
   }, [])
 
-  useEffect(() => {
+
+  function fetchWeapons() {
     axios.get(`/tierlist/assault_rifles/1`)
       .then(res => setARs(res.data))
+  }
+  useEffect(() => {
+    fetchWeapons()
   }, [])
-
-
-  console.log(assaultRifles)
 
   return (
     <>
-    {loading === false ? (
-    <div>
-      <h1>Tarkov Weapon List</h1>
-      <AppContext.Provider value={{
-        assaultRifles
-      }} >
-        <TierList />
-        <Forum />
-      </AppContext.Provider>
-    </div>
-    ) : (
-      <LoadingScreen/>
+      {loading === false ? (
+        <div>
+          <h1>Tarkov Weapon List</h1>
+          <AppContext.Provider value={{
+            assaultRifles
+          }} >
+            <TierList />
+            <Forum />
+          </AppContext.Provider>
+        </div>
+      ) : (
+        <LoadingScreen />
       )
-    }
+      }
     </>
   )
 }
